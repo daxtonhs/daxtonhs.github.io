@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mist</title>
+    </head>
+    <body>
+        <a>Playlists</a><a>Likes</a><a>Search</a>
+    </body>
+    <script>
+        var clientID = localStorage.getItem("clientID");
+        var auth = localStorage.getItem("auth");
+        if(clientID == null || auth == null) {
+            clientID = prompt("Client ID?");
+            clientID = prompt("Auth?");
+            localStorage.setItem("clientID", clientID);
+            localStorage.setItem("auth", auth);
+        }
+
+        async function api(url) {
+            const response = fetch(url + `&client_id=${clientID}`, {"method": "POST", "headers": {
+                "Authorization": auth,
+                "User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+            }});
+        }
+    </script>
+</html>
